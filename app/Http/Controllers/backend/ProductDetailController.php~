@@ -12,8 +12,8 @@ class ProductDetailController extends Controller
     public function index($productId)
     {
         $productDetails = ProductDetail::with('product')->where('product_id', $productId)->get();
-        $products = Product::all();
-        return view('backend.product.product_details', compact('productDetails', 'products'));
+        $productId = Product::all();
+        return view('backend.product.product_details', compact('productDetails', 'productId'));
     }
 
     // Create a new product detail
