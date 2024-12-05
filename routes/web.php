@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\ProductDetailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,11 @@ Route::middleware('auth')->group(function () {
 });
 Route::resource('products', ProductController::class);
 Route::get('product/list', [ProductController::class, 'productList'])->name('product.list');
+
+Route::prefix('products/details')->group(function() {
+    Route::post('/store', [ProductDetailController::class, 'store']);
+    Route::get('/', [ProductDetailController::class, 'index']);
+    Route::put('/{id}', [ProductDetailController::class, 'update']);
+    Route::delete('/{id}', [ProductDetailController::class, 'destroy']);
+});
 require __DIR__.'/auth.php';
