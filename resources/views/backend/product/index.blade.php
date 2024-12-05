@@ -46,7 +46,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Product Price</label>
-                            <input type="text" class="form-control" name="price" id="price" placeholder="Product Price">
+                            <input type="number" class="form-control" step="0.01" name="price" id="price" placeholder="Product Price">
                         </div>
                         <input type="hidden" id="productId" name="id">
                         <div class="mt-3">
