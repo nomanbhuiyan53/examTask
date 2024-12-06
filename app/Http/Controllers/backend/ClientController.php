@@ -22,7 +22,6 @@ class ClientController extends Controller
         return response()->json($clients);
     }
 
-    // product store using post method
     public function store(Request $request)
     {
 
@@ -48,15 +47,12 @@ class ClientController extends Controller
         }
         return response()->json($client);
     }
-
-    // Show a product
     public function edit($id)
     {
         $client = Client::find($id);
         return response()->json($client);
     }
 
-    // Delete a product
     public function destroy($id)
     {
         $client = Client::findOrFail($id);

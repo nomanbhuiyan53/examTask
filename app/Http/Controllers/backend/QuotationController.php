@@ -57,7 +57,6 @@ class QuotationController extends Controller
         return response()->json(['message' => 'Quotation deleted successfully']);
     }
 
-    // public function quotationDetails(){
     public function quotationDetails(){
         $products = Product::all();
         $quotations = Quotation::all();

@@ -36,14 +36,13 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    // Show a product
     public function show($id)
     {
         $product = Product::find($id);
         return response()->json($product);
     }
 
-    // Delete a product
+   
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
