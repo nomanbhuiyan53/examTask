@@ -1,6 +1,6 @@
 @extends('app')
 @push('title')
-    'Product List'
+    Product
 @endpush
 @push('css')
 @endpush

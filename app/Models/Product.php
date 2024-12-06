@@ -13,4 +13,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductDetail::class);
     }
+
+    public function quotationDetails()
+    {
+        return $this->hasMany(QuotationDetail::class);
+    }
 }

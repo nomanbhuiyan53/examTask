@@ -9,44 +9,45 @@ use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
 {
-    public function index($productId)
+    public function index()
     {
-        $productDetails = ProductDetail::with('product')->where('product_id', $productId)->get();
+        $productDetails = ProductDetail::with('product')->get();
         $products = Product::all();
         return view('backend.product.product_details', compact('productDetails', 'products'));
     }
 
+    public function table(){
+        $productDetails = ProductDetail::with('product')->get();
+        return response()->json($productDetails);
+    }
     // Create a new product detail
-    public function store(Request $request, $productId)
+    public function store(Request $request)
     {
+
         $request->validate([
             'detail_name' => 'required|string|max:255',
             'detail_value' => 'required|string|max:255',
         ]);
-
-        $productDetail = new ProductDetail();
-        $productDetail->product_id = $productId;
-        $productDetail->detail_name = $request->detail_name;
-        $productDetail->detail_value = $request->detail_value;
-        $productDetail->save();
-
+        if($request->productId){
+            $productDetail = ProductDetail::findOrFail($request->productId);
+            $productDetail->product_id = $request->product_id;
+            $productDetail->detail_name = $request->detail_name;
+            $productDetail->detail_value = $request->detail_value;
+            $productDetail->update();
+        }else{
+            $productDetail = new ProductDetail();
+            $productDetail->product_id = $request->product_id;
+            $productDetail->detail_name = $request->detail_name;
+            $productDetail->detail_value = $request->detail_value;
+            $productDetail->save();
+        }
         return response()->json($productDetail, 201);
     }
 
-    // Update a product detail
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'detail_name' => 'required|string|max:255',
-            'detail_value' => 'required|string|max:255',
-        ]);
-
+    public function edit($id) {
         $productDetail = ProductDetail::findOrFail($id);
-        $productDetail->detail_name = $request->detail_name;
-        $productDetail->detail_value = $request->detail_value;
-        $productDetail->save();
-
-        return response()->json($productDetail);
+        $products = Product::all();
+        return response()->json(['productDetail' => $productDetail, 'products' => $products]);
     }
 
     // Delete a product detail
