@@ -23,8 +23,8 @@ This is a Laravel project that includes authentication, database migrations, see
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/nomanbhuiyan53/examTask.git
+   cd examTask
    ```
 
 2. **Install PHP Dependencies**
